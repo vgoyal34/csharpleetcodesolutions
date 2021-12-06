@@ -1,0 +1,8 @@
+ public int MinCostToMoveChips(int[] chips) {
+        // Counting chips which are at even position
+        int count = chips.Count(x=>x%2==0);
+        // Chipss at odd position -- chips.Length - count
+        
+        //Minimum of both will give minimum cost.
+        return Math.Min(count, chips.Length - count);
+    }
