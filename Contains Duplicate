@@ -1,0 +1,12 @@
+public bool ContainsDuplicate(int[] nums) {
+        var lst = new List<int>();
+        foreach(var item in nums){
+            if(!lst.Contains(item)){
+                lst.Add(item);
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
+    }
