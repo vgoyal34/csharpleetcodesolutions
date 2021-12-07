@@ -1,0 +1,81 @@
+ public int MajorityElement(int[] nums) {
+        int num = 0; 
+        int n = nums.Length;
+        int maxCount = n/2;
+        
+        for (int i = 0; i < n; i++) {
+            int count = 0;
+            for (int j = 0; j < n; j++) {
+                if (nums[i] == nums[j])
+                    count++;
+            }
+ 
+            // update maxCount if count of
+            // current element is greater
+            if (count > maxCount) {
+                maxCount = count;
+                num = nums[i];
+                break;
+            }
+        }
+        
+        return num;
+    }
+    
+    
+    --- Solution 2 with Dictionary ------
+      public int MajorityElement(int[] nums) {
+        int num = 0;
+        var dict = new Dictionary<int, int>();
+        int n = nums.Length;
+        int maxCount = n/2;
+        
+        for(int i = 0; i < n; i++){
+            num = nums[i];
+            if(dict.ContainsKey(num))
+            {
+                int val = dict[num];
+                dict[num] = ++val;
+            }
+            else
+            {
+              dict.Add(num, 1);  
+            }
+        }
+        
+        for (int i = 0; i < n; i++) {
+            num = nums[i];
+            int count = dict[num];
+ 
+            // update maxCount if count of
+            // current element is greater
+            if (count > maxCount) {
+                maxCount = count;
+                break;
+            }
+        }
+        
+        return num;
+    }
+    
+    
+    
+    ---Solution 3 with Boyer Moore Majority Prolbem -----
+    
+    public int MajorityElement(int[] nums) {
+    int major = nums[0];
+    int count = 1;
+    for(int i = 1; i < nums.Length; i++){
+        if(count == 0){
+            major = nums[i];
+            count++;
+        }else{
+            if(major == nums[i]){
+                count++;
+            }else{
+                count--;
+            }
+        }
+    }
+    return major;
+    }
