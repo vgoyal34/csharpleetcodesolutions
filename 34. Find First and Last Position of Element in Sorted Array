@@ -1,0 +1,20 @@
+ public int[] SearchRange(int[] nums, int target) {
+        int len = nums.Length;
+        int[] ret = new int[2] { -1, -1 };
+        bool IsFirstFound = false;
+            
+        for(int i = 0; i < len; i++){
+            if(!IsFirstFound && nums[i] == target){
+               ret[0] = i; 
+               ret[1] = i;
+               IsFirstFound = true;
+            }
+            else if(nums[i] == target){
+                ret[1] = i;
+            }      
+        }
+        
+        return ret;
+    }
+    
+    
