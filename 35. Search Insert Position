@@ -1,0 +1,43 @@
+public int SearchInsert(int[] nums, int target) {
+        int len = nums.Length;
+        int left = 0;
+        int right = len;
+        int mid = 0;
+        
+        if(target > nums[len - 1]){
+            return len;
+        }
+        
+        while(left <= right){
+            mid = left + (right - left)/2;
+          
+            if (nums[mid]==target)
+                return mid;
+            else if (nums[mid]<target)
+                left=mid+1;
+            else if (nums[mid]>target)
+                right=mid-1;
+        }
+        return left;
+    }
+    
+    ---- Solution 2 with recursion ----
+    private int SearchInsert(int[] nums, int min, int max, int target)
+    {
+        int mid = (min + max)/2;
+        if (min<=max)
+        {
+            mid = (min + max) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) return SearchInsert(nums, mid + 1, max, target);
+            return SearchInsert(nums, min, mid - 1, target);
+        }
+        return mid+1;
+    }
+    
+    
+    ----- Solution with Linq -----
+    public int SearchInsert(int[] nums, int target) {
+        int i = nums.ToList().BinarySearch(target);
+        return i >= 0 ? i: ~i;
+    }
