@@ -1,0 +1,77 @@
+ public int singleNumber(int[] numbers) {
+    // ----------------------------------------------
+    // Brute Force -- O(n**2),  Space Complexity O(1)
+    // ----------------------------------------------
+    int len = numbers.length;
+    boolean isTwice = false; 
+    for (int i=0; i < len; i++) { 
+       isTwice = false;
+       for (int j=0; j<len; j++) {
+         if (isTwice) break;
+         if (i != j)
+            if(numbers[i] == numbers[j]) 
+                isTwice = true
+       }         
+       if(!isTwice) return numbers[i];
+     }
+     return numbers[len - 1];
+  }
+  
+  ---- With Sorting ---
+  public int singleNumber(int[] numbers) { 
+    // -----------------------------------------------------------
+    // Sorting -- Time Complexity O(nlogn), Space Complexity O(1)
+    // -----------------------------------------------------------
+    Arrays.sort(numbers);
+    int len = numbers.length;
+    int result = numbers[len - 1]; 
+    int i = 0;
+    while (i < len - 2) {
+      if (numbers[i] == numbers[i+1]) {
+        i = i + 2;
+      } else {
+        return numbers[i];
+      }
+    }
+    return numbers[len - 1];
+  }
+  
+  ---- Using Dictionary ====
+  
+  public int SingleNumber(int[] nums) {
+        int len  = nums.Length;
+        int retVal = 0;
+        Dictionary<int, bool> map = new Dictionary<int, bool>();
+        
+        if(len == 1) return nums[0];
+        
+        for(int i = 0; i < len; i++){
+            int num = nums[i];
+            if(map.ContainsKey(num)){
+                map[num] = false; 
+            }
+            else{
+                map.Add(num, true);
+            }
+        }
+        
+        for(int i = 0; i < len; i++){
+            int num = nums[i];
+            map.TryGetValue(num, out bool res);
+            if(res){
+              retVal = num; 
+            } 
+        }
+      return retVal;
+    }
+    
+    
+    -------------Using XOR -------
+    
+      public int SingleNumber(int[] nums) {
+        int result = 0;
+        for(int i = 0; i < nums.Length; i++){
+            result ^= nums[i];
+        }
+        return result;
+    }
