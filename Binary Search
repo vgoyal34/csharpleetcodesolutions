@@ -1,0 +1,22 @@
+public int Search(int[] nums, int target) {
+        int len = nums.Length;
+        int left = 0;
+        int mid = 0;
+        int right = len - 1;
+        
+        if(nums == null || len == 0){
+            return -1;
+        }
+        
+        while(left <= right){
+            mid = (right - left)/2 + left;
+            if(nums[mid] == target)
+                return mid;
+            else if(nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        } 
+        
+        return -1;
+    }
