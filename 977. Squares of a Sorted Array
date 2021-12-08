@@ -1,0 +1,13 @@
+public int[] SortedSquares(int[] nums) {
+        int len = nums.Length;
+        var ret = new int[len];
+        for(int i = 0; i < len; i++){
+             ret[i] = nums[i] * nums[i];
+        }
+        
+        Array.Sort(ret);
+        return ret;
+    }
+    
+    
+    
