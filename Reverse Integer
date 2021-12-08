@@ -34,3 +34,47 @@
       
          return retnumber;
     }
+    
+    
+    ------ Without using string- ------
+    
+     public int Reverse(int x) 
+    {
+        bool issigned = false;
+        long number = 0;
+        int retnumber = 0;
+        string str = string.Empty;
+        string rev = string.Empty;
+        if(x < 0) issigned = true;
+        if (x<=Int32.MinValue)
+            {
+                return 0;
+            }
+        if(issigned)
+        {
+           str = ((-1) * x).ToString(); 
+        }
+        else str = x.ToString();
+        
+
+        int len = str.Length;
+        
+        for(int i = len - 1; i >= 0; i--){
+           int mod = x % 10;
+           if(number == 0) number = mod;
+           else number = number * 10 + mod;
+           
+           x = x / 10;
+        }
+        
+        
+       if(issigned) 
+            number = (-1) * number;
+        
+        if (number >= Int32.MinValue && number <= Int32.MaxValue)
+         {
+            retnumber = Convert.ToInt32(number);
+         }
+      
+         return retnumber;
+    }
